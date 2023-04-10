@@ -2,7 +2,9 @@ package frame
 
 import (
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 type Serv struct {
@@ -27,8 +29,24 @@ func (self *Serv) Init(mod, configPath string, apiList map[string]BaseAction) {
 		if err != nil {
 			log.Panic(fc)
 		}
-		self.mux.Handle(api, fc)
+		self.mux.Handle(api, wrapper(fc))
 	}
+}
+
+// 并发模型
+func wrapper(hfc http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		oid := rand.Int31n(5)
+		// -- 利用context同步子任务同步
+		// ctx, cancelFn := context.WithCancel(context.Background())
+		// go func() {
+
+		log.Printf("--- local task will cost: %d", oid)
+		time.Sleep(time.Second * time.Duration(oid))
+		hfc.ServeHTTP(w, r)
+
+		// }()
+	})
 }
 
 /**
