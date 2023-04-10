@@ -8,14 +8,14 @@ import (
 type GetBookList struct {
 }
 
-func (self *GetBookList) inv() error {
+func (self *GetBookList) Invoke() error {
 	log.Printf("hello api[GetBookList]")
 	return nil
 }
 
 func (self *GetBookList) Register() (http.Handler, error) {
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		self.inv()
+		self.Invoke()
 	}
 
 	return http.HandlerFunc(handler), nil

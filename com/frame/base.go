@@ -5,6 +5,6 @@ import (
 )
 
 type BaseAction interface {
-	inv() error
+	Invoke() error
 	Register() (http.Handler, error)
 }
