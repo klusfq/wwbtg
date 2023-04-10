@@ -23,7 +23,10 @@
 
 ## 功能列表
 
-### UI
-[ ] 使用
+### Common
+[x] 提供了UI模块的action接口实现
+[x] 提供了服务启动接口
 
-## TODO
+### UI
+[x] 提供api和handler注册器
+[x] 实现了一个基本的api内部
