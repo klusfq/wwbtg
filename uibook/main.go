@@ -12,7 +12,7 @@ import (
  *  3. 启动服务
  */
 func main() {
-	sv := &frame.Serv{}
+	sv := &frame.Fapi{}
 
 	sv.Init("uibook", "", controller.ApiList)
 

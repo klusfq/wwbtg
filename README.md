@@ -27,7 +27,10 @@
 - [x] 加载框架基础依赖库
   - [ ] json处理组件替换
   - [ ] rpc调用组件替换
+    - [ ] net/rpc实现
+    - [ ] grpc实现
   - [ ] db连接管理组件替换
+    - [ ] 
 - [x] 实现不同模块（UI、Server）服务启动环境
   - [ ] http请求连接管理组件`php-fmp > multiplexer(net/http)`
 - [ ] 实现静态资源服务
