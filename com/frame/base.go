@@ -12,5 +12,6 @@ type BaseAction interface {
 
 // -- service接口
 type BaseService interface {
-	Output() RpcOut
+	GetInput(key string, deft any) any
+	Output(out any) RpcOut
 }
