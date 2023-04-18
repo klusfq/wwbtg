@@ -5,8 +5,7 @@ import (
 	"log"
 	"net"
 	"net/rpc"
-	"os"
-	"wwbtg/user/service"
+	"wwbtg/user/config"
 )
 
 func main() {
@@ -18,14 +17,17 @@ func main() {
 	}
 
 	gob.Register(map[string]any{})
-	rc.RegisterName("WxUser", new(service.WxUser))
 
+	// servList := []string{"WxUser", "AliUser", "Passport"}
+	// for _, servName := range servList {
+	// }
+
+	for servN, servIns := range config.ServiceMap {
+		rc.RegisterName(servN, servIns)
+	}
+
+	// rc.RegisterName("WxUser", new(service.WxUser))
 	// log.Printf("rpc service[%s] start", "WxUser")
+
 	rc.Accept(lisenter)
-}
-
-func LoadAppConf(fnm string) {
-	po := os.Getwd()
-	fname := po + "/" + fnm + ".json"
-
 }
