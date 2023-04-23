@@ -11,7 +11,7 @@ import (
 )
 
 func getDB() *sql.DB {
-	dsn := "study:future@tcp(121.37.71.178:3389)/work/charset=utf8"
+	dsn := "study:future@tcp(121.37.71.178:3389)/work?charset=utf8"
 
 	db, err := sql.Open("mysql", dsn)
 
@@ -39,9 +39,10 @@ func (self *DefaultModel) InitDB(tb string) {
 func (self *DefaultModel) Select(fields, conds []string) *sql.Rows {
 	oFields := strings.Join(fields, ",")
 
-	oConds := strings.Join(conds, ",")
+	oConds := strings.Join(conds, " and ")
 
 	sql := fmt.Sprintf("select %s from %s where %s", oFields, self.TbName, oConds)
+	log.Println("sql: " + sql)
 
 	rows, err := self.db.Query(sql)
 	if err != nil {
