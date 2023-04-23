@@ -83,9 +83,10 @@ log file -> filebeat -> kafka -> logstash -> es -> grafana
 ### 网关服务
 - [ ] 服务注册、发现
 - [ ] 服务链路追踪
-- [ ] 日志处理
+- [ ] 基于日志的服务监控系统
 
 ### 消息中间件
+- [ ] `kafka`
 
 ### 数据库中间件
-- [ ] binlog
+- [ ] `binlog`
