@@ -5,25 +5,10 @@ import (
 	"fmt"
 	"log"
 	"strings"
-	"time"
+	"wwbtg/com/db"
 
 	_ "github.com/go-sql-driver/mysql"
 )
-
-func getDB() *sql.DB {
-	dsn := "study:future@tcp(121.37.71.178:3389)/work?charset=utf8"
-
-	db, err := sql.Open("mysql", dsn)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	db.SetMaxOpenConns(20)
-	db.SetConnMaxLifetime(time.Minute * 60)
-
-	return db
-}
 
 // -- 为应用模块的model提供公共操作
 type DefaultModel struct {
@@ -32,7 +17,7 @@ type DefaultModel struct {
 }
 
 func (self *DefaultModel) InitDB(tb string) {
-	self.db = getDB()
+	self.db = db.GetMysqlDB()
 	self.TbName = tb
 }
 
