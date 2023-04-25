@@ -12,7 +12,7 @@ var once sync.Once
 
 func GetMysqlDB() *sql.DB {
 	once.Do(func() {
-		dsn := "study:future@tcp(121.37.71.178:3389)/work?charset=utf8"
+		dsn := "study:*@tcp(0.0.0.0:3389)/work?charset=utf8"
 
 		var err error
 		instance, err = sql.Open("mysql", dsn)
